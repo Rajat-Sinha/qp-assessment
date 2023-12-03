@@ -1,0 +1,49 @@
+databaseChangeLog:
+  # applications changeset
+  - changeSet:
+      id: audit_config
+      author: platform-gb-service
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/V0_AuditConfig.sql
+            relativeToChangelogFile: false
+            splitStatements: false
+  - changeSet:
+      id: t_grocery_items
+      author: platform-gb-service
+      preConditions:
+        - onFail: CONTINUE
+        - sqlCheck:
+            expectedResult: 0
+            sql: SELECT count(*) FROM pg_constraint WHERE conname = 't_grocery_items_pkey'
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/V1_Grocery_Items.sql
+            relativeToChangelogFile: false
+            splitStatements: false
+  - changeSet:
+      id: t_orders
+      author: platform-gb-service
+      preConditions:
+        - onFail: CONTINUE
+        - sqlCheck:
+            expectedResult: 0
+            sql: SELECT count(*) FROM pg_constraint WHERE conname = 't_orders_pkey'
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/V2_Order.sql
+            relativeToChangelogFile: false
+            splitStatements: false
+  - changeSet:
+      id: t_order_items
+      author: platform-gb-service
+      preConditions:
+        - onFail: CONTINUE
+        - sqlCheck:
+            expectedResult: 0
+            sql: SELECT count(*) FROM pg_constraint WHERE conname = 't_order_items_pkey'
+      changes:
+        - sqlFile:
+            path: db/changelog/sql/V3_Order_Items.sql
+            relativeToChangelogFile: false
+            splitStatements: false
