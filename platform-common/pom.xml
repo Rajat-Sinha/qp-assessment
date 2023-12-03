@@ -10,6 +10,7 @@
 	<artifactId>platform-common</artifactId>
 	<version>0.0.1</version>
 	<name>platform-common</name>
+	<packaging>jar</packaging>
 	<description>Common Code(Exception, Utils, Services, Constants)</description>
 	
 	<properties>
